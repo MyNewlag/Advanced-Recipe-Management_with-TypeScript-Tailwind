@@ -4,7 +4,7 @@ const Modal = ({ children, content }: { children: ReactNode; content: ReactNode 
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="relative">
+    <div className="relative flex items-center justify-center">
       <div className="cursor-pointer" onClick={() => setOpen(true)}>
         {children}
       </div>

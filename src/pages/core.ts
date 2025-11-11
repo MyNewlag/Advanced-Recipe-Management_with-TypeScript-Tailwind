@@ -1,8 +1,8 @@
 
 import * as yup from 'yup';
 import type { InitialType } from '../types/recipe';
-import { createNewFoodService } from './servises';
 import { Alert } from '../utils/Alert';
+import { createNewFoodService } from '../service/servises';
 
 
     export const onSubmit=async (
