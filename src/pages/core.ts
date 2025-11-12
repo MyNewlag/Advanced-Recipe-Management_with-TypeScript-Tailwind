@@ -1,14 +1,14 @@
 
 import * as yup from 'yup';
-import type { InitialType } from '../types/recipe';
+import type { DataType, InitialType } from '../types/recipe';
 import { Alert } from '../utils/Alert';
 import { createNewFoodService } from '../service/servises';
 
 
     export const onSubmit=async (
-        values:InitialType,
+        values:DataType,
         action:any,
-        setData:React.Dispatch<React.SetStateAction<InitialType[]>>
+        setData:React.Dispatch<React.SetStateAction<DataType[]>>
     )=>{
 
      const res = await createNewFoodService(values)
