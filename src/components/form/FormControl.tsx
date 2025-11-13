@@ -1,5 +1,5 @@
 import File from "./File";
-import Input from "./Input";
+import Input from "./InputForm";
 import TextArea from "./TextArea";
 
 type FormControlProps = {

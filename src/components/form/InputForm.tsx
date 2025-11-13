@@ -1,5 +1,5 @@
 import { ErrorMessage, FastField } from "formik";
-import type { FieldInputProps, FormikProps } from "formik";
+import type { FieldInputProps } from "formik";
 
 import FormikError from "./FormikError";
 
@@ -11,13 +11,15 @@ type InputType = {
   placeholder?: string;
 };
 
-export default function Input({
+export default function InputForm({
   type = "text",
   name,
   label,
   className = "",
   placeholder,
 }: InputType) {
+
+  
   return (
     <FastField name={name}>
       {({

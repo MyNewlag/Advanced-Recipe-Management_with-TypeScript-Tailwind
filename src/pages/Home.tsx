@@ -1,16 +1,22 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import Modal from "../components/Modal";
 import { DataContext } from "../context/RecipeContext";
 import Button from "../components/Button";
 import { Alert, Confirm } from "../utils/Alert";
 import { deleteFoodService, getAllFoodService } from "../service/servises";
+import Input from "../components/Input";
+import type { DataType } from "../types/recipe";
 
 const Home = () => {
   const { data, setData } = useContext(DataContext);
 
+  const [dataInfo , setDataInfo]=useState<DataType[]>([])
+  const [textSearch , setTextSearch]=useState("")
+
   const handleGetData = async () => {
     const res = await getAllFoodService();
     setData(res.data);
+    setDataInfo(res.data);
   };
 
   const handleDelete = async (
@@ -28,18 +34,27 @@ const Home = () => {
     }
   };
 
+  useEffect(()=>{
+    setDataInfo(data.filter(d=>d.title.includes(textSearch)))
+  }, [data, textSearch]);
+
   useEffect(() => {
     handleGetData();
   }, []);
 
   return (
     <div className="w-full rounded-xl mt-5 bg-slate-50 dark:bg-slate-800 transition-colors duration-300">
+      <div className="py-5 px-3">
+        <Input name="search" className="w-full mr-1" 
+        onChange={(e)=>setTextSearch(e.target.value)}
+        placeholder="اسم غذا را سرچ بزن..."/>
+      </div>
       <div
         className="gap-y-2 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3
-             lg:grid-cols-4 p-2"
-      >
-        {data.length > 0 ? (
-          data.map((d) => (
+             lg:grid-cols-4 p-2">
+
+        {dataInfo.length > 0 ? (
+          dataInfo.map((d) => (
             <Modal
               key={d.id}
               content={
