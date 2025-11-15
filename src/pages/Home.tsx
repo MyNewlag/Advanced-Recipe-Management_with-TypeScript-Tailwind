@@ -1,13 +1,15 @@
 import { useContext, useEffect, useState } from "react";
-import Modal from "../components/Modal";
 import { DataContext } from "../context/RecipeContext";
 import Button from "../components/Button";
 import { Alert, Confirm } from "../utils/Alert";
 import { deleteFoodService, getAllFoodService } from "../service/servises";
 import Input from "../components/Input";
 import type { DataType } from "../types/recipe";
+import { Link, useNavigate } from "react-router";
 
 const Home = () => {
+
+   
   const { data, setData } = useContext(DataContext);
 
   const [dataInfo , setDataInfo]=useState<DataType[]>([])
@@ -24,6 +26,7 @@ const Home = () => {
     id: string
   ) => {
     e.stopPropagation();
+    e.preventDefault();  
     const confirm = await Confirm("حذف غذا", "آیا از حذف این غذا مطمئن هستید؟");
     if (confirm.isConfirmed) {
       const res = await deleteFoodService(id);
@@ -43,57 +46,29 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="w-full rounded-xl mt-5 bg-slate-50 dark:bg-slate-800 transition-colors duration-300">
-      <div className="py-5 px-3">
-        <Input name="search" className="w-full mr-1" 
+    <div className="max-w-5xl mx-auto w-full rounded-xl mt-5 bg-slate-50 dark:bg-slate-800 
+    transition-colors duration-300">
+      <div className="w-[95%] mx-auto py-5 px-3">
+        <Input name="search" className="mr-1" 
         onChange={(e)=>setTextSearch(e.target.value)}
         placeholder="اسم غذا را سرچ بزن..."/>
       </div>
       <div
-        className="gap-y-2 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3
-             lg:grid-cols-4 p-2">
+        className="gap-y-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3
+             lg:grid-cols-4 p-2 justify-items-center">
 
         {dataInfo.length > 0 ? (
           dataInfo.map((d) => (
-            <Modal
-              key={d.id}
-              content={
-                <div className="p-5">
-                  <div className="flex items-center gap-5">
-                    <div className="bg-emerald-500 w-1/4 max-w-60 rounded-lg overflow-hidden">
-                      <img
-                        className="w-full h-full pt-1 object-cover"
-                        src="/src/public/images/headrFood.png"
-                        alt=""
-                      />
-                    </div>
-                    <div className="w-3/4">
-                      <h3 className="font-bold text-lg text-gray-900 dark:text-gray-100">
-                        {d.title}
-                      </h3>
-                    </div>
-                  </div>
-                  <div>
-                    <p className="mt-2 text-gray-700 dark:text-gray-300">
-                      {d.ingredients}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="mt-2 text-gray-600 dark:text-gray-400">
-                      {d.descriptions}
-                    </p>
-                  </div>
-                </div>
-              }
-            >
+        
+            <Link to={`/recipe/${d.id}`}>
               <div
-                className="relative bg-white dark:bg-slate-600 w-50 sm:w-55 h-75 rounded-xl 
+                className=" relative bg-white dark:bg-slate-600 w-65 sm:w-55 h-75 rounded-xl mb-15
                 hover:scale-105 transition-transform duration-300 shadow-md hover:shadow-xl"
               >
                 <div className="w-[95%] m-auto mt-1 rounded-md overflow-hidden">
                   <img
                     className="w-full h-35 pt-1 object-cover"
-                    src="/src/public/images/headrFood.png"
+                    src="/src/public/images/food1.jpg"
                     alt=""
                   />
                 </div>
@@ -117,7 +92,8 @@ const Home = () => {
                   onClick={(e) => handleDelete(e, d.id)}
                 />
               </div>
-            </Modal>
+            </Link>
+        
           ))
         ) : (
           <h2 className="text-red-600 dark:text-red-400">
@@ -125,6 +101,8 @@ const Home = () => {
           </h2>
         )}
       </div>
+
+
     </div>
   );
 };

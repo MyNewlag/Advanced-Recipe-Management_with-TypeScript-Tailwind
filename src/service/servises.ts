@@ -1,4 +1,5 @@
 import httpService from "../service/httpService";
+import type { AllCommentType, CommentType } from "../types/comment";
 import type { InitialType } from "../types/recipe";
 
 
@@ -19,13 +20,31 @@ import type { InitialType } from "../types/recipe";
     return httpService('/recipes', 'get');
   }
 
-  export const createNewFoodService = (data: InitialType) => {
 
+  export const createNewFoodService = (data: InitialType) => {
     return httpService("/recipes", "post", data);
   };
 
 
-  export const deleteFoodService = (id: string) => {
+  export const getSingleFood = (id: string) => {
+    return httpService(`/recipes/${id}`, "get");
+  };
 
+
+  export const deleteFoodService = (id: string) => {
     return httpService(`/recipes/${id}`, "delete");
   };
+
+
+  
+export const getCommentService = (foodId: string) => {
+    return httpService(`/comments?foodId=${foodId}`, "get");
+};
+
+
+  
+  export const createCommentService = (data:AllCommentType) => {
+    return httpService(`/comments`, "post" , data);
+  };
+
+

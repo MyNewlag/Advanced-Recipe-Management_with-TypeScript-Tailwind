@@ -10,7 +10,6 @@ import { createNewFoodService } from '../service/servises';
         action:any,
         setData:React.Dispatch<React.SetStateAction<DataType[]>>
     )=>{
-
      const res = await createNewFoodService(values)
       if(res.status==201){
         setData(old=>[...old , values])

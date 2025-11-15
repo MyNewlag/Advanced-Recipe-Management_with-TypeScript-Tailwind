@@ -3,7 +3,7 @@ import React from 'react';
 import { Route, Routes } from 'react-router';
 import Home from '../../pages/Home';
 import AddRecipe from '../../pages/AddRecipe';
-import RecipeDetail from '../../pages/RecipeDetail';
+import RecipeDetail from '../../pages/attr/RecipeDetail';
 
 const Content = () => {
     return (

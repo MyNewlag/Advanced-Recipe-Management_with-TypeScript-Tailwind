@@ -10,7 +10,7 @@ function App() {
   return (
     <AppContainer>
       <div className=" elative z-50 top-9 right-2 left-2 max-w-[90%] sm:max-w-[85%] 
-      m-auto">
+      m-auto pt-2">
 
             <Header/>
             <Content/>
