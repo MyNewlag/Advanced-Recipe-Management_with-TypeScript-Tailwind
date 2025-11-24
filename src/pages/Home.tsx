@@ -5,7 +5,7 @@ import { Alert, Confirm } from "../utils/Alert";
 import { deleteFoodService, getAllFoodService } from "../service/servises";
 import Input from "../components/Input";
 import type { DataType } from "../types/recipe";
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
 
 const Home = () => {
 
@@ -89,7 +89,7 @@ const Home = () => {
                   title="حذف"
                   className="absolute bottom-2 left-3 bg-rose-600 hover:bg-rose-700 
                   text-white px-3 py-1 rounded-md shadow-md"
-                  onClick={(e) => handleDelete(e, d.id)}
+                  onClick={(e) => handleDelete(e, d.id!)}
                 />
               </div>
             </Link>

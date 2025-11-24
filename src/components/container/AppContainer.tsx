@@ -1,4 +1,4 @@
-import React, { type ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import { useAppSelector } from '../../redux/reduxHook';
 
 const AppContainer = ({children}:{children : ReactNode}) => {

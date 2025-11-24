@@ -7,5 +7,5 @@
     }
 
     export interface  DataType extends  InitialType{
-          id:string
+          id?:string
     }

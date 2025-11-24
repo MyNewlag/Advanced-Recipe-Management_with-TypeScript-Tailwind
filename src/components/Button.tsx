@@ -1,5 +1,5 @@
 
-import React, { type ComponentProps } from 'react';
+import { type ComponentProps } from 'react';
 
 
 
