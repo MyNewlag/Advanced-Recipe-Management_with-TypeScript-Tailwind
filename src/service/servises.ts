@@ -1,5 +1,5 @@
 import httpService from "../service/httpService";
-import type { AllCommentType, CommentType } from "../types/comment";
+import type { AllCommentType } from "../types/comment";
 import type { InitialType } from "../types/recipe";
 
 
